@@ -1,0 +1,557 @@
+Théorie de la preuve
+Définition (axiomatique à la Hilbert). Les schémas d'axiome de la logique des
+prédicats sont ceux de la logique propositionnelle, plus
+∀ x A -> ((A){x\t})
+(A){x\t} -> ∃ x A
+(où {x\t} est une substitution quelconque),
+et les règles d'inférence sont le Modus Ponens :
+A A -> B
+93
+A A -> B
+_____________
+B
+plus les deux règles pour les quantificateurs
+A -> B
+______________ s'il n'y a pas d'occurrence libre de x dans A
+A -> (∀ x B)
+et
+A -> B
+______________ s'il n'y a pas d'occurrence libre de x dans B
+(∃ x A) -> B
+Preuve, prouvabilité, consistance
+• Même définition qu‘en logique propositionnelle.
+• Il est possible de définir également la déduction.
+– Nous l'omettons ici, car elle est plus complexe que celle
+de la logique propositionnelle:
+– les deux règles d'inférence pour les quantificateurs
+94
+– les deux règles d'inférence pour les quantificateurs
+peuvent seulement être appliquées à des axiomes
+logiques, et non à des axiomes non-logiques et des
+formules déduites à partir de ceux-ci.
+• De plus, cette notion peut être réduite à la validité,
+par un théorème de la déduction similaire à celui de
+la logique propositionnelle.
+Propriétés importantes: Adéquation,
+complétude, décidabilité
+• Théorème d'adéquation. Si |- A alors |= A.
+• Théorème de complétude. Si |= A alors |- A.
+• Théorème (semi-décidabilité). La logique des
+prédicats est semi-décidable : il existe une
+95
+prédicats est semi-décidable : il existe une
+procédure effective telle que pour toute formule A
+en entrée,
+– si A est valide alors la procédure s'arrête et retourne
+`oui'
+– sinon ou bien la procédure s'arrête et retourne `non', ou
+bien elle ne s'arrête pas.
+Equivalences
+• Equivalences propositionnelles. Ces principes peuvent
+être `importées' de la logique propositionnelle:
+– Théorème de remplacement des équivalences,
+– Équivalence permettant d’éliminer les connecteurs,
+96
+– Équivalence permettant d’éliminer les connecteurs,
+– Propriétés algébriques.
+• Equivalences relatives aux quantificateurs
+– Ce sont les principes de base pour pouvoir mettre en forme
+normale.
+Equivalences relatives aux
+quantificateurs (1)
+• Fermeture universelle : soit A sans occurrence libre
+de x. Alors |- A ssi |- ∀ x A .
+• Fermeture existentielle : soit A sans occurrence libre
+de x. Alors
+∃
+97
+A est satisfiable ssi ∃ x A est satisfiable.
+• Quantification répétée :
+|- (Q1 x Q2 x A) <-> Q2 x A
+• Quantification sans variable libre : soit A sans
+occurrence libre de x. Alors
+|- (Q x A) <-> A
+|- (A){x\t} <-> A
+Equivalences relatives aux
+quantificateurs (2)
+• Renommage : |- (Q x A) <-> Q y (A){x\y}
+• Les deux cas où la distribution est possible :
+|- (∀ x A) ∧ (∀ x B) <-> ∀ x (A ∧ B)
+|- (∃ x A) v (∃ x B) <-> ∃ x (A v B)
+98
+• Elargissement de la portée des quantificateurs : soit
+B sans occurrence libre de x. Alors
+|- (Q x A) ∧ B <-> Q x (A ∧ B)
+|- (Q x A) v B <-> Q x (A v B)
+• Remarques : Ces équivalences ne sont pas prouvables si x a
+des occurrences libres dans B : (∃ x p(x)) ∧ ¬ p(x) n'est pas
+équivalent à ∃ x (p(x) ∧ ¬ p(x)) .
+Exemple d’application des équiv.
+• |- (∀ x ∀ y (p(x) ∧ q(y))) <-> ∀ x (p(x) ∧ q(x))
+• On utilise les équivalences suivantes.
+∀ x ∀ y (p(x) ∧ q(y)) <-> ∀ x (p(x) ∧ ∀ y q(y))
+<-> (∀ x p(x)) ∧ ∀ y q(y)
+<-> (∀ x p(x)) ∧ ∀ x q(x)
+<-> ∀ x (p(x) ∧ q(x))
+99
+• On utilise donc successivement
+1. l'élargissement de la portée de ∀ y (car il n'y a pas d'occurrence libre
+de y dans p(x))
+2. l'élargissement de la portée de ∀ x, (car il n'y a pas d'occurrence libre
+de x dans ∀ y q(y))
+3. le renommage de y
+4. la distributivité de ∀ x sur la conjonction.
+Ainsi que le fait que le remplacement des équivalences est valide.
+Formes Normales
+• Problème : pour une formule A de la logique des prédicats il
+n'existe pas toujours une formule en forme normale conjonctive
+équivalente (comme c'est le cas en logique propositionnelle).
+• Il sera cependant possible d'obtenir une formule A' telle que A
+est satisfiable ssi A' est satisfiable. On procède en trois étapes :
+– mise en forme normale prénexe : séparation en une suite de
+quantificateurs et une formule sans quantificateurs (la
+100
+quantificateurs et une formule sans quantificateurs (la
+matrice),
+– mise en forme normale de Skolem : élimination des
+quantificateurs existentiels,
+– mise en forme normale conjonctive de la matrice, en utilisant
+le même algorithme qu'en logique propositionnelle
+Forme normale prénexe
+• Définition (forme normale prénexe).
+Une formule A est en forme normale prénexe si elle est de
+la forme Qx1 ... Qxn B , où B est une formule sans
+quantificateurs.
+La suite des quantificateurs est appelée préfixe, et B est
+appellée matrice.
+101
+La suite des quantificateurs est appelée préfixe, et B est
+appellée matrice.
+• Exemples:
+– La formule p(x) ∧ ¬ p(y) est en forme normale prénexe.
+– La formule ∀ x ∃ y ( (p(x) ∧ q(x,y)) v r(z)) est en forme normale
+prénexe. ∀ x ∃ y est le préfixe, et (p(x) ∧ q(x,y)) v r(z) est la
+matrice.
+Forme normale prénexe (2)
+• Remarque: dans une formule en forme
+normale prénexe il peut y avoir des
+variables libres (comme z dans notre
+102
+variables libres (comme z dans notre
+exemple).
+• Autre exemple: La formule
+∃ x ( (p(x) -> ∀ x p(x) )
+n'est pas en forme normale prénexe.
+Algorithme de mise en forme prénexe
+Entrée : une formule A Sortie : une formule en forme normale prénexe
+début
+Eliminer ->, <->, FALSE;
+Appliquer autant que possible les équivalences suivantes, dans n'importe quel
+ordre (en remplaçant le membre gauche par le membre droit) :
+¬ ¬ A <-> A
+¬(A v B) <-> ¬ A ∧ ¬ B
+¬(A ∧ B) <-> ¬ A v ¬ B
+103
+¬(A ∧ B) <-> ¬ A v ¬ B
+¬(∀ x A) <-> ∃ x ¬ A
+¬(∃ x A) <-> ∀ x ¬ A
+tant que il existe une sous-formule Q x B telle que x apparaît en dehors de B dans
+A
+faire
+remplacer Q x B par Q y (B){x\y} , où y est une nouvelle variable
+(n'apparaissant pas dans A) ;
+fin tant que;
+…
+Algorithme de mise en forme prénexe
+(suite)…
+Appliquer autant que possible les équivalences suivantes, dans n'importe quel
+ordre (en remplaçant le membre gauche par le membre droit) :
+(Q x A) ∧ B <-> Q x (A ∧ B)
+(Q x A) v B <-> Q x (A v B)
+A ∧ (Q x B) <-> Q x (A ∧ B)
+A v (Q x B) <-> Q x (A v B)
+104
+A v (Q x B) <-> Q x (A v B)
+fin
+• Exemple: Soit la formule ∃ x ( p(x) -> ∀ x p(x) )
+1.Éliminer -> : ∃ x (¬p(x) v ∀ x p(x) )
+2. Renommer ∀ x p(x) en ∀ y p(y) : ∃ x (¬p(x) v ∀ y p(y) )
+3. Sortir ∀ y : ∃ x ∀ y (¬p(x) v p(y) )
+• Remarque : le renommage est essentiel ici ; p.ex. ∃ x (¬p(x) v
+∀ x p(x) ) n'est pas équivalent à ∃ x ∀ x (¬p(x) v p(x) )
+Algorithme de mise en forme
+prénexe
+• Théorème. Pour toute entrée A, l'algorithme de mise
+en forme normale prénexe s'arrête. Il retourne une
+formule en forme normale prénexe équivalente à
+l'entrée.
+105
+– Démo: la démonstration utilise que les équivalences sont
+valides - en particulier ceux de la dernière étape reposent
+sur le fait que grâce au renommage de l'étape précédente
+toutes les occurrences de x sont dans la portée de Q x - ,
+ainsi que le théorème de substitution des équivalences: les
+remplacements effectués par l'algorithme correspondent à
+des équivalences prouvables.
+Forme normale de Skolem
+• Définition (forme normale de Skolem).
+Une formule est en forme normale de
+Skolem si elle est en forme normale prénexe
+106
+Skolem si elle est en forme normale prénexe
+et ne contient pas de quantificateur
+existentiel.
+• Exemple: La formule ∀x (p(x) ∧ ¬ p(y)) est
+en forme normale de Skolem.
+Forme normale de Skolem:
+exemples
+• La formule ∀ x ∃ y ( (p(x) ∧ q(x,y)) v r(z)) n'est
+pas en forme normale de Skolem, à cause de
+l'occurrence du quantificateur existentiel ∃ y.
+107
+l'occurrence du quantificateur existentiel ∃ y.
+• Remarque: dans une formule en forme normale
+de Skolem il peut y avoir des variables libres
+(comme z dans notre exemple).
+Algorithme de mise en forme
+normale de Skolem
+Entrée : une formule A Sortie : une formule en forme normale de Skolem
+début
+Mettre A en forme normale prénexe;
+pour tout quantificateur existentiel ∃ x apparaissant dans A faire
+- appliquer la substitution {x\f(x ,...,x )} à la matrice de A , où
+108
+- appliquer la substitution {x\f(x1,...,xn)} à la matrice de A , où
+x1,...,xn sont les quantificateurs universels précédant ∃ x
+dans le préfixe de A
+f est une nouvelle fonction qui n'a pas encore été utilisée ;
+- supprimer ∃ x du préfixe de A
+fin pour tout
+fin
+• Remarque: Si n = 0 on substitue par une constante.
+Forme normale de Skolem:
+exemples de mise en forme
+• Soit la formule ∃ x ∀ y p(x,y) :
+Remplacer x par la constante a : ∀ y p(a,y)
+109
+• Soit la formule ∀ x ∃ y p(x,y) :
+Remplacer y par la fonction f(x) : ∀ x p(x,f(x))
+Forme normale de Skolem
+• Théorème. Pour toute formule d'entrée A, l'algorithme
+de mise en forme normale de Skolem s'arrête. Il
+retourne une formule A' en forme normale de Skolem
+telle que A est satisfiable ssi A' est satisfiable.
+– Démo: la démonstration utilise que toutes les étapes
+110
+– Démo: la démonstration utilise que toutes les étapes
+préservent la satisfiabilité ; notons que la mise en forme
+normale prénexe préserve même l'équivalence logique)
+• Remarque. Dualement, on obtient l'équivalence de
+validité si on remplace les variables quantifiées
+universellement par une fonction des variables
+quantifiées existentiellement.
+Forme normale clausale
+• Définition (forme normale clausale).
+Une formule est en forme normale clausale si elle est
+en forme normale de skolem, fermée et et sa matrice
+est en forme normale conjonctive propositionnelle.
+• Exemple1: la formule ∀ x ∀ y (p(x) ∧ ¬ p(y)) est en
+forme normale clausale.
+111
+forme normale clausale.
+• Exemple2: la formule ∀ x ∀ y ( (p(x) ∧ q(x,y)) v r(z))
+n'est pas en forme normale clausale pour deux raisons :
+– d'une part, la matrice n'est pas en forme normale
+conjonctive ;
+– d'autre part, elle n'est pas fermée car la variable z a une
+occurrence libre.
+Forme normale clausale:
+Algorithme
+Entrée : une formule A Sortie : une formule en forme
+normale clausale
+début
+pour tout variable x apparaissant libre dans A faire
+112
+pour tout variable x apparaissant libre dans A faire
+Fermer A existentiellement: remplacer A par ∃ x A
+fin pour tout;
+Mettre A en forme normale de Skolem;
+Mettre la matrice de A en forme normale conjonctive
+fin
+Mise en forme normale clausale:
+exemple (3)
+• Soit la formule ∃ x ( p(x) -> ∀ x p(x) ) :
+1. Mise en forme normale prénexe:
+∃ x ∀ y (¬p(x) v p(y) )
+113
+∃ x ∀ y (¬p(x) v p(y) )
+2. mise en forme normale de Skolem :
+∀ y (¬p(a) v p(y) )
+qui est aussi sa forme normale clausale ;
+l'ensemble de clauses associé est :
+{ {¬p(a)} , {p(y)} }
+Forme normale clausale (3)
+• Théorème. Pour toute entrée A, l'algorithme
+de mise en forme normale clausale s'arrête. Il
+retourne une formule A' en forme normale
+clausale telle que A est satisfiable ssi A' est
+114
+clausale telle que A est satisfiable ssi A' est
+satisfiable.
+– Démo: la démonstration est un corollaire du
+théorème pour la forme normale de Skolem et du
+théorème pour la forme normale conjonctive de la
+logique propositionnelle.
+Démonstration automatique:
+Motivation
+• Même motivation de la nécessité d'une procédure de
+décision qu’en logique propositionnelle
+• De plus, une conséquence de la semi-décidabilité de
+la logique des prédicats est qu'il n'existe aucune
+115
+la logique des prédicats est qu'il n'existe aucune
+procédure de décision pour la logique des prédicats:
+– pour chaque procédure il y aura des formules en entrée sur
+lesquelles la procédure ne s'arrête pas (pas forcement les
+mêmes).
+L’unification
+• Définition (unifieur). Une substitution s unifie
+deux termes si elle les rend identiques : s unifie t
+et t' si (t)s = (t')s.
+Un unifieur d'un ensemble fini d'équations entre
+termes E = {t =t' , ... , t =t' } est une substitution
+116
+termes E = {t1=t'1 , ... , tn=t'n} est une substitution
+qui unifie les deux termes de chaque équation.
+• Exemple:Soit E = {x=f(y) , y=z}.
+Un unifieur de E est s = {x\f(a) , y\a , z\a}.
+Un autre unifieur de E est s = {x\f(z) , y\z}.
+L’unification: l’unifieur le plus
+général
+• Définition (unifieur le plus général).
+Soient t et t' deux termes, et s un unifieur de t et t'.
+s est un unifieur le plus général (upg) si pour tout
+unifieur s' de t et t' il existe une substitution s'' telle
+que s' = s'' o s.
+117
+que s' = s'' o s.
+• Exemple: Soit E = {x=f(y) , y=z}. Un upg de E
+est s = {x\f(z) , y\z}.
+Un autre upg de E est s = {x\f(u) , y \u , z\u}.
+• Théorème. Si un ensemble d'équations entre
+termes est unifiable alors il existe un unique upg s
+(à un renommage de variables près).
+L’unification: équations résolues
+• Définition (équations résolues). Un ensemble
+d'équations E est résolu si
+1. toutes les parties gauches des équations sont des
+variables
+2. chaque variable apparaît au plus une fois dans E
+118
+2. chaque variable apparaît au plus une fois dans E
+Soit E = {x1=t1 , ... , xn=tn} un ensemble d'équations
+résolu. La substitution associé à E est :
+sE = {x1\t1 , ... , xn\tn}
+Substitutions associées à des
+ensembles d’équations résolu
+• Soit E = {x1=t1 , ... , xn=tn} un ensemble d'équations
+résolu, et soit sE la substitution associée à E. Comme E
+est résolu, il n'y a pas de variable x qui apparaît
+comme substituée et substituant, c-à-d que pour tout
+x\t dans s :
+119
+x\t dans sE :
+– x n'apparaît pas dans t
+– si t contient un y, alors il n'y a pas d'autre y\t' dans s.
+Alors on a en particulier que sE est l'upg de E.
+De plus, comme chaque xi apparaît exactement une fois
+dans E, on a que sE est idempotent : sE o sE = sE
+Algorithme d’Unification
+Entrée : un ensemble fini E d'équations entre termes ; sortie : ou bien échec, ou bien un upg de E
+Début
+tant que E n'est pas résolu faire
+choisir une équation de E ;
+appliquer une des règles suivantes à cette équation :
+• si elle est de la forme t = t alors la supprimer
+• si elle est de la forme f(t1,...,tn) = g(t'1,...,t'm) et f et g sont différentes alors échec
+• si elle est de la forme f(t1,...,tn) = f(t'1,...,t'n) alors la remplacer par n équations t1 = t'1,
+120
+• si elle est de la forme f(t1,...,tn) = f(t'1,...,t'n) alors la remplacer par n équations t1 = t'1,
+... ,tn = t'n
+• si elle est de la forme t = x et t n'est pas une variable alors la remplacer par x = t
+• si elle est de la forme x = t et x apparaît dans t alors échec
+• si elle est de la forme x = t et x n'apparaît pas dans t alors remplacer x par t partout
+ailleurs dans E
+fin tant que ;
+rendre la substitution sE associé à E
+Fin
+L’unification: exemple et
+propriétés
+• Exemple: Soit {x=y' , f(y)=u}.
+1.inversion de f(y)=u : {x=y' , u=f(y)}
+2.L'upg associé est donc : { x\y' , u\f(y) }
+121
+2.L'upg associé est donc : { x\y' , u\f(y) }
+• Théorème. Si un ensemble de termes est
+unifiable alors l'algorithme calcule leur
+upg, sinon il s'arrête sur échec.
+La méthode de résolution
+• Définition (résolvante). Soient C et C' deux
+clauses telles que
+– C = {p(t1,...,tn)} U D
+– C' = {¬ p(t'1,...,t'n)} U D'
+122
+– C' = {¬ p(t'1,...,t'n)} U D'
+– il existe un unifieur le plus général de {t1=t'1 , ...
+tn=t'n} (après avoir éventuellement renommé les
+variables d'une des deux clauses)
+Alors (D U D')s est une résolvante de C et C'.
+Résolvante: exemple
+• Soient les deux clauses
+C = {p(x) , p(x')} et C’ = {¬ p(y) , ¬ p(y')}
+1. Comme il n'y a pas de variable commune, un
+renommage n'est pas nécessaire.
+2. Les littéraux p(x) et ¬ p(y) sont des `candidats' pour
+être complémentaires. L'ensemble d'équations E =
+123
+être complémentaires. L'ensemble d'équations E =
+{x=y} admet comme upg s = {x\y}.
+3. Alors
+1. on supprime p(x) de C et ¬ p(y) de C’,
+2. on applique s à ce qui reste dans les deux clauses
+3. et on `met les deux restes ensemble' :
+(C - {p(x)})s U (C’ - {¬ p(y)})s = {p(x') , ¬ p(y')}
+La méthode de résolution:
+facteur
+Définition (facteur). Soit C une clause telle
+que:
+– ou bien C = {p(t1,...,tn), p(t'1,...,t'n)} U D ,
+124
+– ou bien C = {p(t1,...,tn), p(t'1,...,t'n)} U D ,
+ou bien C = {¬ p(t1,...,tn), ¬ p(t'1,...,t'n)} U D , et
+– il existe un unifieur le plus général s de {t1=t'1 , ...
+tn=t'n}.
+Alors (C)s est un facteur de C.
+Facteur: exemples
+• Soit la clause C = {¬¬¬¬ p(x,a) , ¬¬¬¬ p(f(y),y) , q(y,z)}.
+1. On applique l'algorithme d'unification à {x=f(y),
+a=y}, qui rend un unifieur le plus général s = {x\f(a),
+y\a}.
+2. Alors on applique s à C : Un facteur de C est donc :
+125
+2. Alors on applique s à C : Un facteur de C est donc :
+(C)s = {¬ p(f(a),a) , q(a,z)}
+• N.B. : comme les clauses sont des ensembles (et non
+des listes), les `doublons' engendrés par l'application
+de l'upg en 2. sont éliminés.
+La méthode de résolution :
+Réfutation
+• Définition (réfutation). Une réfutation des
+clauses C1,...,Cm est une liste finie de clauses (D1,
+... ,Dn) telle que:
+126
+n
+– Dn est la clause vide {}
+– pour i = 1, ...,n, la clause Di est
+• soit égale à une des clauses Cj
+• soit elle est résolvante de deux clauses Dj, Dk précédant Di
+dans la liste
+• soit elle est facteur d'une clause Dj précédant Di dans la liste.
+Réfutation: exemples
+• Notation. Dans une réfutation, on utilise une ligne numérotée par
+clause. On commence par écrire les clauses de départ. Ensuite on
+associe un commentaire à chaque ligne spécifiant comment elle a été
+obtenue.
+– `` résolvante de 3,1 et 4,1 '' signifie que la clause présente a été obtenue à partir de
+la 3ème et 4ème clause, par unification des premiers littéraux de chaque clause.
+• Exemple: Soient les clauses {p(x) , p(x')} et {¬ p(y) , ¬ p(y')}. Une
+réfutation est :
+127
+réfutation est :
+• 1 {p(x) , p(x')} clause 1
+• 2 {¬ p(y) , ¬ p(y')} clause 2
+• 3 {p(x)} facteur de 1,1 et 1,2 avec {x'\x}
+• 4 {¬ p(y)} facteur de 2,1 et 2,2 avec {y'\y}
+• 5 {} résolvante de 3,1 et 4,1 avec {x\y}
+N.B. : remarquer qu'ici une réfutation est impossible sans utiliser la
+factorisation
+Remarque: Réfutation en tant
+que déduction
+• Une réfutation des clauses C1,...,Cm n'est donc rien
+d'autre qu'une déduction de FALSE à partir de
+C1,...,Cm , dans un système logique ayant aucun
+axiome et deux règles d'inférence :
+128
+axiome et deux règles d'inférence :
+– la production de résolvantes et
+– la production de facteurs.
+• Ce système déductif permet de trouver non pas les
+formules valides, mais plutôt les formules
+insatisfiables.
+La méthode de résolution :
+satisfiabilité et validité
+• Théorème. Soit A une formule en forme normale
+clausale, et soient x1,...,xn les variables libres de A.
+Alors ∀ x1 ... ∀ xn A est insatisfiable ssi il existe une
+réfutation de l'ensemble de clauses associé à A.
+• Corollaire. Pour savoir si une formule donnée A est valide en logique des
+129
+• Corollaire. Pour savoir si une formule donnée A est valide en logique des
+prédicats, il suffit de
+1. nier A : A' = ¬ A
+2. mettre A' en forme normale clausale;
+3. répéter la production de résolvantes et facteurs jusqu'à ce que
+• ou bien la clause vide est produite
+• ou bien il n'est plus possible de produire des clauses nouvelles
+4.si la clause vide est produite alors A est valide ;
+si il n'est plus possible de produire des clauses nouvelles alors A n'est pas
+valide.
+La méthode de résolution:semi-
+décision
+• Il est possible qu'aucun des deux conditions d'arrêt soit atteinte. La
+résolution est donc un exemple de procédure de semi-décision pour la
+logique des prédicats;
+• Exemple: Soient les clauses {p(x)} et {¬ p(y) , p(f(y))}. Alors la
+procédure de résolution ne s'arrête pas :
+• 1 {p(x)} clause 1
+130
+• 1 {p(x)} clause 1
+• 2 {¬ p(y) , p(f(y))} clause 2
+• 3 {p(f(y))} résolvante de 1,1 et 2,1 avec {x\y}
+• 4 {p(f(f(y)))} résolvante de 3,1 et 2,1 avec {y'\f(y)}, après avoir renommé {y\y'} en
+clause 2
+• 5 {p(f(f(f(y))))} résolvante de 4,1 et 2,1 avec {y'\f(y)}, après avoir renommé {y\y'}
+en clause 2
+• 6 {p(f(f(f(f(y)))))} résolvante de 5,1 et 2,1 avec {y'\f(y)}, après avoir renommé {y\y'}
+en clause 2
+• 7 ....
+La stratégie linéaire
+• Lors de la recherche d'une réfutation d'un ensemble de
+clauses il faut explorer toutes les possibilités possibles
+de production de résolvante entre deux clauses, et ceci
+itérativement.
+• Une stratégie linéaire restreint cette combinatoire et
+diminue ainsi l'espace de recherche.
+131
+diminue ainsi l'espace de recherche.
+• Définition (réfutation linéaire). Une réfutation
+est linéaire si:
+– chaque facteur est obtenu à partir de la clause
+immédiatement précédente
+– chaque résolvante est obtenue à partir de deux clauses
+dont exactement une la précède immédiatement.
+La stratégie linéaire
+• Théorème. Soit E un ensemble de clauses. Si il
+existe une réfutation de E alors il existe une
+réfutation linéaire de E.
+• Exemple:l’exemple ci-dessus de la réfutation des
+clauses {p(x) , p(x')} et {¬ p(y) , ¬ p(y')} n’est pas
+linéaire!
+132
+linéaire!
+Une réfutation linéaire est :
+• 1 {p(x) , p(x')} clause 1
+• 2 {¬ p(y) , ¬ p(y')} clause 2
+• 3 {p(x)} factorisation de 1,1 et 1,2 avec {x'\x}
+• 4 {¬ p(y')} résolvante de 3,1 et 2,1 avec {x\y}
+• 5 {} résolvante de 4,1 et 3,1 avec {x\y'}

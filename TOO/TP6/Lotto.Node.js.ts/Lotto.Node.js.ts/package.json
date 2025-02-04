@@ -1,0 +1,16 @@
+{
+  "author": "FranckBarbier.com",
+  "description": "Lotto",
+  "license": "MIT",
+  "main": "Main",
+  "name": "Lotto.Node.js.ts",
+  "version": "1.0.0",
+  "scripts": {
+    "compilation": "tsc",
+    "execution": "node js/Main.js"
+  },
+  "devDependencies": {
+    "@types/node": "^18.18.3",
+    "typescript": "^5.2.2"
+  }
+}

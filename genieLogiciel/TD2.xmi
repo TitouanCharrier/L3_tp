@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI xmi.version="1.2" xmlns:UML="org.omg.xmi.namespace.UML">
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>Umbrello UML Modeller</XMI.exporter>
+      <XMI.exporterVersion>2.32.0</XMI.exporterVersion>
+    </XMI.documentation>
+  </XMI.header>
+  
+  <XMI.content>
+    <UML:Model xmi.id="BibliothequeModel" name="Bibliotheque" visibility="public">
+      
+      <!-- Classe Livre -->
+      <UML:Class xmi.id="Livre" name="Livre" visibility="public">
+        <UML:Attribute name="titre" visibility="public">
+          <UML:DataType xmi.idref="String"/>
+        </UML:Attribute>
+        <UML:Attribute name="ISBN" visibility="public">
+          <UML:DataType xmi.idref="String"/>
+        </UML:Attribute>
+        <UML:Attribute name="anneePublication" visibility="public">
+          <UML:DataType xmi.idref="Integer"/>
+        </UML:Attribute>
+        <UML:Attribute name="genre" visibility="public">
+          <UML:DataType xmi.idref="String"/>
+        </UML:Attribute>
+        <UML:Attribute name="statut" visibility="public">
+          <UML:DataType xmi.idref="String"/>
+        </UML:Attribute>
+      </UML:Class>
+      
+      <!-- Classe Auteur -->
+      <UML:Class xmi.id="Auteur" name="Auteur" visibility="public">
+        <UML:Attribute name="nom" visibility="public">
+          <UML:DataType xmi.idref="String"/>
+        </UML:Attribute>
+        <UML:Attribute name="biographie" visibility="public">
+          <UML:DataType xmi.idref="String"/>
+        </UML:Attribute>
+        <UML:Attribute name="dateNaissance" visibility="public">
+          <UML:DataType xmi.idref="Date"/>
+        </UML:Attribute>
+      </UML:Class>
+
+      <!-- Classe Utilisateur -->
+      <UML:Class xmi.id="Utilisateur" name="Utilisateur" visibility="public">
+        <UML:Attribute name="nomUtilisateur" visibility="public">
+          <UML:DataType xmi.idref="String"/>
+        </UML:Attribute>
+        <UML:Attribute name="email" visibility="public">
+          <UML:DataType xmi.idref="String"/>
+        </UML:Attribute>
+        <UML:Attribute name="dateAdhesion" visibility="public">
+          <UML:DataType xmi.idref="Date"/>
+        </UML:Attribute>
+      </UML:Class>
+      
+      <!-- Classe Prets -->
+      <UML:Class xmi.id="Prets" name="Prets" visibility="public">
+        <UML:Attribute name="dateEmprunt" visibility="public">
+          <UML:DataType xmi.idref="Date"/>
+        </UML:Attribute>
+        <UML:Attribute name="dateRetour" visibility="public">
+          <UML:DataType xmi.idref="Date"/>
+        </UML:Attribute>
+        <UML:Attribute name="enRetard" visibility="public">
+          <UML:DataType xmi.idref="Boolean"/>
+        </UML:Attribute>
+      </UML:Class>
+
+      <!-- Association Livre - Auteur -->
+      <UML:Association xmi.id="LivreAuteurAssociation" name="Livre-Auteur">
+        <UML:AssociationEnd xmi.idref="Livre" visibility="public" aggregation="none" multiplicity="*"/>
+        <UML:AssociationEnd xmi.idref="Auteur" visibility="public" aggregation="none" multiplicity="*"/>
+      </UML:Association>
+
+      <!-- Association Utilisateur - Prets -->
+      <UML:Association xmi.id="UtilisateurPretsAssociation" name="Utilisateur-Prets">
+        <UML:AssociationEnd xmi.idref="Utilisateur" visibility="public" aggregation="none" multiplicity="1"/>
+        <UML:AssociationEnd xmi.idref="Prets" visibility="public" aggregation="none" multiplicity="*"/>
+      </UML:Association>
+      
+      <!-- Diagramme de classe -->
+      <UML:Diagram xmi.id="ClassDiagram1" name="DiagrammeBibliotheque" type="Class" owner="BibliothequeModel">
+        <UML:Diagram.element>
+          <!-- Élément Livre dans le diagramme -->
+          <UML:Class xmi.idref="Livre"/>
+          <!-- Élément Auteur dans le diagramme -->
+          <UML:Class xmi.idref="Auteur"/>
+          <!-- Élément Utilisateur dans le diagramme -->
+          <UML:Class xmi.idref="Utilisateur"/>
+          <!-- Élément Prets dans le diagramme -->
+          <UML:Class xmi.idref="Prets"/>
+          <!-- Association Livre - Auteur dans le diagramme -->
+          <UML:Association xmi.idref="LivreAuteurAssociation"/>
+          <!-- Association Utilisateur - Prets dans le diagramme -->
+          <UML:Association xmi.idref="UtilisateurPretsAssociation"/>
+        </UML:Diagram.element>
+      </UML:Diagram>
+
+    </UML:Model>
+  </XMI.content>
+</XMI>

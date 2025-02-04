@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\section*{Résumé : Théorie de la preuve}
+
+\subsection*{Définition (axiomatique à la Hilbert)}
+Les schémas d'axiomes de la logique des prédicats incluent :
+\begin{itemize}
+    \item Les schémas d'axiomes de la logique propositionnelle.
+    \item Les deux axiomes spécifiques :
+    \[
+    \forall x \, A \to (A)\{x \backslash t\}
+    \]
+    \[
+    (A)\{x \backslash t\} \to \exists x \, A
+    \]
+    où $(A)\{x \backslash t\}$ désigne une substitution quelconque.
+\end{itemize}
+Les règles d'inférence sont :
+\begin{enumerate}
+    \item \textbf{Modus Ponens} :
+    \[
+    \frac{A \quad A \to B}{B}
+    \]
+    \item Les deux règles pour les quantificateurs :
+    \[
+    \frac{A \to B}{A \to \forall x \, B} \quad \text{(si $x$ n'apparaît pas libre dans $A$)}
+    \]
+    \[
+    \frac{A \to B}{\exists x \, A \to B} \quad \text{(si $x$ n'apparaît pas libre dans $B$)}
+    \]
+\end{enumerate}
+
+\subsection*{Preuve, prouvabilité, consistance}
+\begin{itemize}
+    \item Les définitions de preuve, prouvabilité et consistance sont similaires à celles de la logique propositionnelle.
+    \item Définition de la déduction :
+    \begin{itemize}
+        \item Plus complexe qu'en logique propositionnelle.
+        \item Les règles pour les quantificateurs ne s'appliquent qu'à des axiomes logiques.
+    \end{itemize}
+    \item La déduction peut être réduite à la validité par un théorème de déduction similaire à celui de la logique propositionnelle.
+\end{itemize}
+
+\subsection*{Propriétés importantes}
+\begin{enumerate}
+    \item \textbf{Théorème d'adéquation :} si $\vdash A$, alors $\vDash A$.
+    \item \textbf{Théorème de complétude :} si $\vDash A$, alors $\vdash A$.
+    \item \textbf{Théorème de semi-décidabilité :} 
+    \begin{itemize}
+        \item La logique des prédicats est semi-décidable.
+        \item Il existe une procédure effective qui, pour toute formule $A$ :
+        \begin{itemize}
+            \item Si $A$ est valide, retourne "oui".
+            \item Sinon, la procédure peut s'arrêter avec "non" ou ne jamais s'arrêter.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Équivalences}
+\subsubsection*{Équivalences propositionnelles}
+\begin{itemize}
+    \item Théorème de remplacement des équivalences.
+    \item Élimination des connecteurs.
+    \item Propriétés algébriques.
+\end{itemize}
+
+\subsubsection*{Équivalences relatives aux quantificateurs}
+\begin{itemize}
+    \item Fermeture universelle : si $A$ n'a pas d'occurrence libre de $x$, alors 
+    \[
+    \vdash A \iff \vdash \forall x \, A.
+    \]
+    \item Fermeture existentielle : si $A$ n'a pas d'occurrence libre de $x$, alors 
+    \[
+    \exists A \text{ est satisfiable } \iff \exists x \, A \text{ est satisfiable.}
+    \]
+    \item Quantification répétée : 
+    \[
+    \vdash (Q_1 x \, Q_2 x \, A) \iff Q_2 x \, A.
+    \]
+    \item Quantification sans variable libre : si $A$ n'a pas d'occurrence libre de $x$, alors 
+    \[
+    \vdash (Q x \, A) \iff A.
+    \]
+\end{itemize}
+
+\subsection*{Formes normales}
+\begin{itemize}
+    \item Une formule $A$ peut être mise en forme normale prénexe, forme normale de Skolem, ou forme normale clausale.
+    \item Les algorithmes garantissent l'équivalence ou la préservation de la satisfiabilité.
+\end{itemize}
+
+\end{document}

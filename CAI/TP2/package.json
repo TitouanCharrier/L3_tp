@@ -1,0 +1,20 @@
+{
+  "author": "B--Di",
+  "description": "Bar code",
+  "license": "MIT",
+  "main": "js/Main.js",
+  "name": "Bar code",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "configuration": "tsc --showConfig",
+    "construction": "tsc",
+    "run": "node js/Main.js"
+  },
+  "dependencies": {
+    "sweetalert2": "^11.14.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  }
+}

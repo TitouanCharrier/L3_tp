@@ -1,0 +1,55 @@
+classDiagram
+  class Personne {
+    +id: int
+    +nom: String
+    +prenom: String
+  }
+
+  class Patient {
+    -dossierMedical: String
+    -allergies: String
+  }
+
+  class Personnel {
+    -specialite: String
+  }
+
+  class Medecin {
+    -numeroOrdre: int
+  }
+
+  class Infirmier {
+    -service: String
+  }
+
+  class Service {
+    +nom: String
+  }
+
+  class Consultation {
+    -date: Date
+    -heure: Time
+  }
+
+  class Traitement {
+    -debut: Date
+    -fin: Date
+  }
+
+  class Hospitalisation {
+    -dateEntree: Date
+    -dateSortie: Date
+  }
+
+  Personne <|-- Patient
+  Personne <|-- Personnel
+  Personnel <|-- Medecin
+  Personnel <|-- Infirmier
+
+  Patient -- Consultation
+  Patient -- Traitement
+  Patient -- Hospitalisation
+  Medecin -- Consultation
+  Medecin -- Traitement
+  Infirmier -- Patient
+  Hospitalisation -- Service
