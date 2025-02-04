@@ -43,7 +43,7 @@ int sendFile(long fileSize,char path[100], int sock) {
         return -1;
     }
     
-    int nb_segments = fileSize / 182;
+    int nb_segments = fileSize / 182 + 1;
 
     fseek(file, 0, SEEK_SET); // on place le curseur au début du fichier
     
