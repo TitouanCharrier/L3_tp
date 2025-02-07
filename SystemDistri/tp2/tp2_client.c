@@ -12,7 +12,7 @@
 
 void sendBuff(char buff[182], int sock) {
 
-    int nb_octets = send(sock, buff, strlen(buff)+1, 0);
+    int nb_octets = send(sock, buff, 182, 0);
     if (nb_octets == -1) {
         perror("erreur envoi message");
         exit(1);
@@ -43,13 +43,14 @@ int sendFile(long fileSize,char path[100], int sock) {
         return -1;
     }
     
-    int nb_segments = fileSize / 182 + 1;
+    int nb_segments = fileSize / 182;
 
     fseek(file, 0, SEEK_SET); // on place le curseur au début du fichier
     
-    for(int i=0; i<nb_segments; ++i) {
+    for(int i=0; i<=nb_segments; ++i) {
         fread(buff, 1, 182, file);
         sendBuff(buff, sock);
+        memset(buff, 0, 182);
 
         int confirm = recv(sock, buff, 182 - 1, 0);
 
@@ -57,6 +58,9 @@ int sendFile(long fileSize,char path[100], int sock) {
             perror("Erreur lors de la réception de la confirmation");
             close(sock);
             return 1;
+        }
+        else {
+            printf("segment envoyé : %d\n", i);
         }
     }
 
@@ -127,7 +131,7 @@ int main(int argc, char *argv[]) {
         perror("erreur réponse serveur");
         exit(1);
     }*/
-    char path[100] = "./msg_to_send.txt";
+    char path[100] = "./msg_to_send1.txt";
     sendFile(getFileSize(path),path, sock);
     
 
