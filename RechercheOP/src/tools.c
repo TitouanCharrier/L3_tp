@@ -100,40 +100,61 @@ double longueur(tsp_t p, int parcours[p.nbr]) {
     return res;
 }
 
-// Fonction pour calculer l'angle entre trois points A, B et C
 double calculer_angle(tsp_t p,int a,int c) {
-    
+    // Calcul des vecteurs
     double xa = p.x[a];
     double ya = p.y[a];
     double xb = p.x[0];
     double yb = p.y[0];
-    double xc = p.y[c];
+    double xc = p.x[c];
     double yc = p.y[c];
 
+    double vx1 = xb - xa;
+    double vy1 = yb - ya;
+    double vx2 = xc - xa;
+    double vy2 = yc - ya;
 
-    // Calcul des vecteurs BA et BC
-    double BAx = xa - xb, BAy = ya - yb;
-    double BCx = xc - xb, BCy = yc - yb;
 
-    // Calcul du produit scalaire BA . BC
-    double produitScalaire = BAx * BCx + BAy * BCy;
+    // Calcul du produit scalaire
+    double produit_scalaire = vx1 * vx2 + vy1 * vy2;
 
-    // Calcul des normes des vecteurs BA et BC
-    double normeBA = sqrt(BAx * BAx + BAy * BAy);
-    double normeBC = sqrt(BCx * BCx + BCy * BCy);
+    // Calcul des normes
+    double norme1 = sqrt(vx1 * vx1 + vy1 * vy1);
+    double norme2 = sqrt(vx2 * vx2 + vy2 * vy2);
+
+    // Calcul de l'angle
+    double cos_angle = produit_scalaire / (norme1 * norme2);
+
+    // Forcer la possibilité d'angles obtus
+    if (cos_angle > 1) cos_angle = 1;
+    if (cos_angle < -1) cos_angle = -1;
 
     // Calcul de l'angle en radians
-    double cosTheta = produitScalaire / (normeBA * normeBC);
-    
-    // S'assurer que la valeur est dans l'intervalle [-1, 1] pour éviter des erreurs numériques
-    if (cosTheta > 1) cosTheta = 1;
-    if (cosTheta < -1) cosTheta = -1;
+    double angle = acos(cos_angle);
 
-    // Calcul de l'angle en radians, puis le convertir en degrés
-    double angleRadians = acos(cosTheta);
-    double angleDegres = angleRadians * (180.0 / M_PI);
+    // Déterminer le sens de l'angle
+    double determinant = vx1 * vy2 - vx2 * vy1;
+    if (determinant < 0) {
+        angle = -angle;
+    }
 
-    return angleDegres; // Retourne l'angle en degrés
+    // Forcer l'angle à être compris entre 0 et 2*PI
+    if (angle < 0) {
+        angle += 2 * M_PI;
+    }
+
+    return angle;
+}
+
+void shuffle(tsp_t p, int parcours[p.nbr]) {
+    int j;
+    int buff;
+    for (int i=0; i<p.nbr; ++i) {
+        j = rand() % i; 
+        buff = parcours[j];
+        parcours[j] = parcours[i];
+        parcours[i] = buff;
+    }
 }
 
 

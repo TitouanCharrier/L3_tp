@@ -16,7 +16,14 @@ typedef struct {
     double *y;
 } tsp_t;
 
+typedef struct {
+        double angle;
+        int indice;
+} AngleIndice;
 
+
+int compare2(const void *a, const void *b);
+  
 double distance(tsp_t p, int v1, int v2);
 
 double longueur(tsp_t p, int parcours[p.nbr]);
@@ -31,9 +38,9 @@ int compare(const void *a, const void *b);
 
 void write_graphviz(FILE *file, tsp_t p, int parcours[p.nbr]);
 
-double greedy0(tsp_t p, int parcours[p.nbr]);
+void greedy0(tsp_t p, int parcours[p.nbr]);
 
-double greedy1(tsp_t p, int parcours[p.nbr], int nsteps);
+void greedy1(tsp_t p, int parcours[p.nbr], int nsteps);
 
 double greedy2(tsp_t p, int parcours[p.nbr], int nsteps);
 
